@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         Point point = new Point(4, 3);
@@ -40,5 +42,50 @@ public class Main {
         double theta = 180.0;
         Point pointRotateTheta = pointRotate.rotate(theta);
         System.out.println("Point rotated by " + theta + " degrees: " + pointRotateTheta);
+
+        ArrayList<String> arr = new ArrayList<>();
+        arr.add("Hello");
+        arr.add("World");
+        System.out.println("\n" + arr);
+        arr.set(0, "Goodbye");
+        System.out.println(arr);
+
+        ArrayList<Boolean> conditions = new ArrayList<>();
+        conditions.add(true);
+        conditions.add(arr.get(0) == "Hello");
+        conditions.add(conditions.get(0) || conditions.get(1));
+        System.out.println("\n" + conditions);
+
+        ArrayList<Integer> intArr = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            intArr.add(0);
+        }
+        System.out.println(intArr.size());
+        System.out.println(intArr.get(32));
+
+        Grid<Integer> grid = new Grid<>(5, 0);
+        grid.set(2, 2, 4);
+        System.out.println("\n" + grid);
+
+        Integer[] intArray = {1, 2, 3, 4, 5};
+        System.out.println(arrayToString(intArray));
+
+        Grid<Integer> grid2 = new Grid<>(5, 0);
+        grid2.set(0, 0, 2);
+        grid2.set(2, 2, 4);
+        grid2.set(4, 4, 6);
+        System.out.println("\n" + grid2);
+        ArrayList<Integer> gridDiag = grid2.diagonal();
+        System.out.println("Diagonal: " + gridDiag);
+
+        System.out.println("\nBiggest side length of any grid made so far: " + Grid.maxSideLength());
+    }
+
+    static <T> String arrayToString(T[] arr) {
+        String str = "[";
+        for (int i = 0; i < arr.length - 1; i++) {
+            str += arr[i] + ", ";
+        }
+        return str + arr[arr.length - 1] + "]";
     }
 }

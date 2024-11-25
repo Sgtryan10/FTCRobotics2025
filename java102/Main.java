@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -79,6 +80,13 @@ public class Main {
         System.out.println("Diagonal: " + gridDiag);
 
         System.out.println("\nBiggest side length of any grid made so far: " + Grid.maxSideLength());
+
+        Shape[] shapes = {new Circle(new Point(1.8, -20), 2), new Square(new Point(100, 2.1), 5.4), new Circle(new Point(0, 0), 1), new Circle(new Point(4, 9.123), 98.32), new Square(new Point(-321, 0), 0.02)};
+        System.out.println("\nSum of all shapes: " + sumArea(shapes));
+        System.out.println("\nScaled shapes: " + Arrays.toString(scaleAll(shapes, 2)));
+
+        Circle circle3 = Circle.fromPoints(new Point(0, 5), new Point(5, 0), new Point(0, -5));
+        System.out.println("\nCircle from 3 points: " + circle3);
     }
 
     static <T> String arrayToString(T[] arr) {
@@ -87,5 +95,21 @@ public class Main {
             str += arr[i] + ", ";
         }
         return str + arr[arr.length - 1] + "]";
+    }
+
+    static double sumArea(Shape[] shapes) {
+        double sum = 0;
+        for (Shape shape : shapes) {
+            sum += shape.area();
+        }
+        return sum;
+    }
+
+    static Shape[] scaleAll(Shape[] shapes, double k) {
+        Shape[] scaled = new Shape[shapes.length];
+        for (int i = 0; i < shapes.length; i++) {
+            scaled[i] = shapes[i].scale(k);
+        }
+        return scaled;
     }
 }
